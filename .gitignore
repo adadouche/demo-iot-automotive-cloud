@@ -18,5 +18,5 @@ claim-certs
 cdk.out
 /.idea/
 /*.iml
-/greengrass_components/fleetwise_edge_connector/fwe-config.yaml
-/grafana_dashboards/grafana-image/provisioning/dashboards/IndividualSignalAnalysis.json
+config/greengrass/fleetwise_edge_connector/fwe-config.yaml
+config/grafana/provisioning/dashboards/IndividualSignalAnalysis.json
