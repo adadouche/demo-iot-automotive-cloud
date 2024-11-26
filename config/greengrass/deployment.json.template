@@ -1,0 +1,48 @@
+{
+    "targetArn": "arn:aws:iot:$GGV2_REGION:$GGV2_ACCOUNT:thing/$GGV2_THING_NAME",
+    "deploymentName": "Main deployment",
+    "components": {
+        "aws.greengrass.Nucleus": {
+            "componentVersion": "2.13.0",
+            "configurationUpdate": {
+                "merge": "{\"iotRoleAlias\": \"$GGV2_TES_RALIAS\", \"awsRegion\": \"$AWS_DEFAULT_REGION\", \"networkProxy\": {}, \"componentStoreMaxSizeBytes\": \"10000000000\", \"greengrassDataPlanePort\": \"8443\", \"iotCredEndpoint\": \"$GGV2_CRED_EP\", \"mqtt\": {}, \"iotDataEndpoint\": \"$GGV2_DATA_EP\", \"runWithDefault\": {}, \"platformOverride\": {}, \"deploymentPollingFrequencySeconds\": \"15\", \"jvmOptions\": \"\"}"
+            },
+            "runWith": {}
+        },
+        "aws.greengrass.TokenExchangeService": {
+            "componentVersion": "2.0.3"
+        },
+        "aws.greengrass.telemetry.NucleusEmitter": {
+            "componentVersion": "1.0.9",
+            "configurationUpdate": {
+                "merge": "{\"telemetryPublishIntervalMs\":\"60000\",\"pubSubPublish\":\"false\",\"mqttTopic\":\"dt/telemetry/embedded-metrics/$GGV2_THING_NAME/gg-telemetry\"}"
+            },
+            "runWith": {}
+        },
+        "demo.iot.automotive.canAnalyzer": {
+            "componentVersion": "1.0.0",
+            "runWith": {}
+        },
+        "demo.iot.automotive.ggStats": {
+            "componentVersion": "1.0.0",
+            "runWith": {}
+        },
+        "demo.iot.automotive.ipcfReplacement": {
+            "componentVersion": "1.0.0"
+        },
+        "demo.iot.automotive.fwe": {
+            "componentVersion": "1.0.0"
+        }
+    },
+    "deploymentPolicies": {
+        "failureHandlingPolicy": "ROLLBACK",
+        "componentUpdatePolicy": {
+            "timeoutInSeconds": 60,
+            "action": "NOTIFY_COMPONENTS"
+        },
+        "configurationValidationPolicy": {
+            "timeoutInSeconds": 60
+        }
+    },
+    "iotJobConfiguration": {}
+}

@@ -1,0 +1,48 @@
+{
+    "targetArn": "arn:aws:iot:us-east-1:423752711601:thing/vCar",
+    "deploymentName": "Main deployment",
+    "components": {
+        "aws.greengrass.Nucleus": {
+            "componentVersion": "2.13.0",
+            "configurationUpdate": {
+                "merge": "{\"iotRoleAlias\": \"GreengrassCoreTokenExchangeRoleAlias\", \"awsRegion\": \"us-east-1\", \"networkProxy\": {}, \"componentStoreMaxSizeBytes\": \"10000000000\", \"greengrassDataPlanePort\": \"8443\", \"iotCredEndpoint\": \"c3lrwaxq79dqjd.credentials.iot.us-east-1.amazonaws.com\", \"mqtt\": {}, \"iotDataEndpoint\": \"a10vbr8oliq34h-ats.iot.us-east-1.amazonaws.com\", \"runWithDefault\": {}, \"platformOverride\": {}, \"deploymentPollingFrequencySeconds\": \"15\", \"jvmOptions\": \"\"}"
+            },
+            "runWith": {}
+        },
+        "aws.greengrass.TokenExchangeService": {
+            "componentVersion": "2.0.3"
+        },
+        "aws.greengrass.telemetry.NucleusEmitter": {
+            "componentVersion": "1.0.9",
+            "configurationUpdate": {
+                "merge": "{\"telemetryPublishIntervalMs\":\"60000\",\"pubSubPublish\":\"false\",\"mqttTopic\":\"dt/telemetry/embedded-metrics/vCar/gg-telemetry\"}"
+            },
+            "runWith": {}
+        },
+        "demo.iot.automotive.canAnalyzer": {
+            "componentVersion": "1.0.0",
+            "runWith": {}
+        },
+        "demo.iot.automotive.ggStats": {
+            "componentVersion": "1.0.0",
+            "runWith": {}
+        },
+        "demo.iot.automotive.ipcfReplacement": {
+            "componentVersion": "1.0.0"
+        },
+        "demo.iot.automotive.fwe": {
+            "componentVersion": "1.0.0"
+        }
+    },
+    "deploymentPolicies": {
+        "failureHandlingPolicy": "ROLLBACK",
+        "componentUpdatePolicy": {
+            "timeoutInSeconds": 60,
+            "action": "NOTIFY_COMPONENTS"
+        },
+        "configurationValidationPolicy": {
+            "timeoutInSeconds": 60
+        }
+    },
+    "iotJobConfiguration": {}
+}

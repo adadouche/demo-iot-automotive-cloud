@@ -20,3 +20,6 @@ cdk.out
 /*.iml
 config/greengrass/fleetwise_edge_connector/fwe-config.yaml
 config/grafana/provisioning/dashboards/IndividualSignalAnalysis.json
+**.tar
+**.bz2
+**.db3
